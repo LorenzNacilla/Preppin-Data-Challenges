@@ -30,7 +30,7 @@ GROUP BY
     "Online or In-Person",
     "Transaction Date";
 
---Output 3
+--Output
 SELECT
     SPLIT_PART(TRANSACTION_CODE, '-',1) AS "Bank",
     TO_VARCHAR(CUSTOMER_CODE) AS "Customer Code",
