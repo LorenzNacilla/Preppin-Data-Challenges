@@ -1,4 +1,5 @@
 import pandas as pd
+import datetime
 
 df = pd.read_csv("G:/My Drive\Personal/Preppin Data/2024/PD 2024 Wk 1 Input.csv")
 
@@ -28,15 +29,21 @@ df.drop(columns=["From and to"], inplace=True)
 # Rearranging the columns
 df = df.reindex(columns=["Date", "Flight Number", "From", "To", "Class", "Price", "Flow Card?", "Bags Checked", "Meal Type"])
 
-#Replacing the FLow Card? column with 1 as yes and 0 as no
+# Replacing the FLow Card? column with 1 as yes and 0 as no
 df["Flow Card?"] = df["Flow Card?"].apply(lambda x: "Yes" if x== 1 else "No")
+
+# Making the Price field as a decimal/numeric
+df["Price"] = pd.to_numeric(df["Price"])
+
+# Changing the date format
+df["Date"] = pd.to_datetime(df["Date"]) # Making it to a date type first
+df["Date"] = df["Date"].dt.strftime("%d/%m/%Y") # Changing the format
 
 # Rows where they have a flow card
 flow_cards = df[df["Flow Card?"] == "Yes"]
 
 # Rows where they don't have a flow card
 non_flow_cards = df[df["Flow Card?"] == "No"]
-
 
 print(flow_cards)
 print(non_flow_cards)
