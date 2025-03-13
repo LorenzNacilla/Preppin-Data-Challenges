@@ -1,7 +1,7 @@
 import pandas as pd
 import datetime
 
-df = pd.read_csv("G:/My Drive\Personal/Preppin Data/2024/PD 2024 Wk 1 Input.csv")
+df = pd.read_csv("G:/My Drive/Personal/Preppin Data/2024/Week 1/PD 2024 Wk 1 Input.csv")
 
 # Splitting the Flight Details field based on the //
 df2 = df["Flight Details"].str.split("//", expand=True)
